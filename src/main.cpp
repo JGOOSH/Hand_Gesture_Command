@@ -331,7 +331,11 @@ int main(int argc, char **argv){
 		hg.getFingerNumber(&m);
 		showWindows(m);
 		out << m.src;
+
+		// Checks if a hand gesture has been detected
+		// and acts on the command
 		hg.fingerAction();
+
 		//imwrite("./images/final_result.jpg",m.src);
     	if(cv::waitKey(30) == char('q')) break;
 	}

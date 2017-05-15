@@ -290,21 +290,25 @@ void HandGesture::getFingerTips(MyImage *m){
 	}
 }
 
+/*
+ * The algorithm for detecting a hand gesture command
+ * Checks for validation (3 fingers)
+ * If validation is good, then check if there is a 
+ * following command (5 fingers) or a stop command 
+ * (2 fingers), otherwise decrement the validation
+ * to allow for the command to act in 3 time frames
+ */
 void HandGesture::fingerAction() {
 	if(fingerTips.size() == 3 ){
-		if(hand_counter <= 0){
 			hand_counter = 3;
-		}else{
-			hand_counter--;
-		}
 	}	
-
 
 	if (fingerTips.size() == 5) {
 		if(!is_following && hand_counter > 0){
 			is_following = true;
 			command_msg.data = 1;
 			pub.publish(command_msg);
+			hand_counter = 0;
 		}
 	}
 	else if (fingerTips.size() == 2) {
@@ -312,8 +316,10 @@ void HandGesture::fingerAction() {
 			command_msg.data = 0;
 			is_following = false;
 			pub.publish(command_msg);
+			hand_counter = 0;
 		}
-	}else{
+	}
+	else{
 		hand_counter--;
 	}
 }
