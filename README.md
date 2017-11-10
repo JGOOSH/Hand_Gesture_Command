@@ -1,9 +1,5 @@
 # Hand_Gesture_Command
 
-Link to the repository: https://github.com/JGOOSH/Hand_Gesture_Command/
-
-Final Project for CS 309: Autonomous Intelligence in Robotics FRI I.
-
 Hand Gesture Command allows a person to command BWI Segbot through hand gesture rather than traditional ways of 
 user manual keyboard input.
 
